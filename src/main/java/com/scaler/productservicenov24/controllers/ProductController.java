@@ -1,6 +1,8 @@
 package com.scaler.productservicenov24.controllers;
 
 import com.scaler.productservicenov24.models.Product;
+import com.scaler.productservicenov24.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,26 +12,34 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+
+    private ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
     @GetMapping("/{productId}")
     public Product getSingleProduct(@PathVariable("productId") Long productId){
 
-        return new Product();
+        Product product = productService.getProductById(productId);
+        return product;
 
     }
 
-    @GetMapping()
-    public List<Product> getAllProducts(){}{
+    @GetMapping("/")
+    public List<Product> getAllProducts(){
 
-        List<Product> products = new ArrayList<Product>();
+        return new ArrayList<>();
     }
 
     @PostMapping()
-    public Product createProduct(){
+    public Product createProduct(@RequestBody Product product){
         return null;
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable("id") Long productId){
+    @DeleteMapping("/{productId}")
+    public void deleteProduct(@PathVariable("productId") Long productId){
 
     }
 

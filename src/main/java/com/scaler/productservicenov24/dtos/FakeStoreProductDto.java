@@ -1,38 +1,49 @@
-package com.scaler.productservicenov24.models;
+package com.scaler.productservicenov24.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product extends BaseModel{
-    private String title;
-    private Double price;
-    private Category category;
+public class FakeStoreProductDto {
+
+    private long id;
+    private String name;
+    private double price;
+    private String category;
     private String description;
     private String image;
 
-    public String getTitle() {
-        return title;
+
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Double getPrice() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Category getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
