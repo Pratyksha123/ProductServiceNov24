@@ -3,6 +3,8 @@ package com.scaler.productservicenov24.controllers;
 import com.scaler.productservicenov24.models.Product;
 import com.scaler.productservicenov24.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,10 +22,10 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public Product getSingleProduct(@PathVariable("productId") Long productId){
+    public ResponseEntity<Product> getSingleProduct(@PathVariable("productId") Long productId){
 
         Product product = productService.getProductById(productId);
-        return product;
+        return new ResponseEntity<>(product, HttpStatus.OK);
 
     }
 
