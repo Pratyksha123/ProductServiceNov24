@@ -5,6 +5,8 @@ import com.scaler.productservicenov24.models.Category;
 import com.scaler.productservicenov24.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,8 +30,20 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public List<Product> getProducts() {
-        return List.of();
+    public List<Product> getAllProducts() {
+
+            //Type Erasure
+            FakeStoreProductDto[] fakeStoreProductDtos = restTemplate.getForObject(
+                    "https://fakestoreapi.com/products",
+                    FakeStoreProductDto[].class
+            );
+
+            List<Product> products = new ArrayList<>();
+            for (FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtos) {
+                products.add(convertFakeStoreProductDToProduct(fakeStoreProductDto));
+            }
+
+            return products;
     }
 
     @Override

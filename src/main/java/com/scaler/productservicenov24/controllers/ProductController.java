@@ -27,10 +27,10 @@ public class ProductController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping("/products")
     public List<Product> getAllProducts(){
 
-        return new ArrayList<>();
+        return productService.getAllProducts();
     }
 
     @PostMapping()
