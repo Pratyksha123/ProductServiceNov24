@@ -1,6 +1,7 @@
 package com.scaler.productservicenov24.services;
 
 import com.scaler.productservicenov24.dtos.FakeStoreProductDto;
+import com.scaler.productservicenov24.exceptions.ProductNotFoundException;
 import com.scaler.productservicenov24.models.Category;
 import com.scaler.productservicenov24.models.Product;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,13 @@ public class FakeStoreProductService implements ProductService {
     @Override
     public Product getProductById(long id) {
 
-        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject(
-                "https://fakestoreapi.com/products/" + id,
-                FakeStoreProductDto.class);
-
-        //convert fakestore dto object into product object
-        return convertFakeStoreProductDToProduct(fakeStoreProductDto);
+//        FakeStoreProductDto fakeStoreProductDto = restTemplate.getForObject(
+//                "https://fakestoreapi.com/products/" + id,
+//                FakeStoreProductDto.class);
+//
+//        //convert fakestore dto object into product object
+//        return convertFakeStoreProductDToProduct(fakeStoreProductDto);
+         throw new ProductNotFoundException("this product is not availabel");
     }
 
     @Override
